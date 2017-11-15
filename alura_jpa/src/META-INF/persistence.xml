@@ -8,17 +8,27 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!-- Aqui são listadas todas as entidades -->
 		<class>br.com.caelum.financas.modelo.Conta</class>
+		<class>br.com.caelum.financas.modelo.Movimentacao</class>
 		<properties>
 			<!-- Propriedades JDBC -->
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+<!-- 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/financas" />
 			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.password" value="" /> -->
+		
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+ 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/financas_alura_jpa" ></property>
+ 			<property name="javax.persistence.jdbc.user" value="postgres" />
+ 			<property name="javax.persistence.jdbc.password" value="postgres" />
+
 			<!-- Configurações específicas do Hibernate -->
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+ 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+ 			<property name="hibernate.connection.shutdown" value="true" />
+			<!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />  -->
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 		</properties>
+		
 	</persistence-unit>
 </persistence>

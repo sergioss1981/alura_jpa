@@ -5,20 +5,19 @@ import javax.persistence.EntityManager;
 import br.com.alura.financas.modelo.Conta;
 import br.com.alura.financas.util.JPAUtil;
 
-public class TesteConta {
+public class TesteBuscaConta {
 	
 	public static void main(String[] args) {
 		
-		Conta conta = new Conta();
-		conta.setTitular("Sergio");
-		conta.setBanco("BB");
-		conta.setAgencia("0555");
-		conta.setNumero("9292");
-				
 		EntityManager em = new JPAUtil().getEntityManager();
 		
 		em.getTransaction().begin();
-		em.persist(conta);
+		
+		Conta conta = em.find(Conta.class, 2);
+		conta.setTitular("Astrogildo de Tal");
+		
+		System.out.println("Titular: " + conta.getTitular());
+		
 		em.getTransaction().commit();
 		
 		em.close();

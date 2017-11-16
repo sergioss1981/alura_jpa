@@ -53,18 +53,17 @@ public class TesteFuncoesJPQL {
 		/*
 		 * Retornar a media por dia
 		 */
-		StringBuilder jpqlAvgDia = new StringBuilder();
 		
-		jpqlAvgDia.append("SELECT DISTINCT AVG(m.valor) FROM Movimentacao m WHERE m.conta.id = :conta ");
-		jpqlAvgDia.append("AND m.tipo = :tipo ");
-		jpqlAvgDia.append("GROUP BY m.data ");
+//		MovimentacaoDao dao = new MovimentacaoDao(em);
 		
-		TypedQuery<Double> queryAvgDia = em.createQuery(jpqlAvgDia.toString(), Double.class);
-		queryAvgDia.setParameter("conta", conta.getId());
-		queryAvgDia.setParameter("tipo", TipoMovimentacaoEnum.ENTRADA);
-
-		List<Double> mediaDias = queryAvgDia.getResultList();
-
+		TypedQuery<Double> typedQuery = em.createNamedQuery("getMediasPorDiaETtipo", Double.class);
+		typedQuery.setParameter("conta", conta.getId());
+		typedQuery.setParameter("tipo", TipoMovimentacaoEnum.SAIDA);
+		
+//		List<Double> mediaDias = dao.getMediasPorDiaETtipo(TipoMovimentacaoEnum.SAIDA, conta);
+		List<Double> mediaDias = typedQuery.getResultList();
+		
+		
 		int dia = 1;
 		for (Double mediaDia : mediaDias) {
 			System.out.println("A média do DIA " + dia + "º é igual a: "  + mediaDia);

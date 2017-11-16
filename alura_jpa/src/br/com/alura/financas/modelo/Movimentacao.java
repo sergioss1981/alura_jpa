@@ -12,12 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import br.com.alura.financas.enuns.TipoMovimentacaoEnum;
 
 @Entity
+@NamedQuery(query="SELECT DISTINCT AVG(m.valor) FROM Movimentacao m WHERE m.conta.id = :conta "
+					+ " AND m.tipo = :tipo GROUP BY m.data ", name="getMediasPorDiaETtipo")
 public class Movimentacao {
 	
 	@Id
